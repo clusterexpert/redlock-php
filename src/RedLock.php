@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/LockAcquiringTimeoutException.php';
 
 class RedLock
 {
@@ -67,7 +68,7 @@ class RedLock
 
         } while ($retry > 0);
 
-        return false;
+        throw new LockAcquiringTimeoutException();
     }
 
     public function unlock(array $lock)
